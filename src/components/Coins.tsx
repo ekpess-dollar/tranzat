@@ -32,12 +32,14 @@ const layers: [string, number, number, number, number][] = [
 
 const pct = (v: number, total: number) => `${(v / total) * 100}%`;
 
-export default function Coins() {
+const placements = {
+  hang: "relative z-10 mx-auto -mb-[61px] mt-16 w-full max-w-[619.5px] lg:absolute lg:bottom-[-61px] lg:left-1/2 lg:m-0 lg:-translate-x-1/2",
+  side: "absolute left-[55%] top-[calc(var(--pad)+24px)] w-[min(560px,38%)]",
+};
+
+export default function Coins({ variant = "hang" }: { variant?: keyof typeof placements }) {
   return (
-    <div
-      aria-hidden
-      className="relative z-10 mx-auto -mb-[61px] mt-16 aspect-[619.5/377] w-full max-w-[619.5px] lg:absolute lg:bottom-[-61px] lg:left-1/2 lg:m-0 lg:-translate-x-1/2"
-    >
+    <div aria-hidden className={`aspect-[619.5/377] ${placements[variant]}`}>
       {layers.map(([file, x, y, w, h]) => (
         <Image
           key={file}
