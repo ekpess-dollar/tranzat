@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="eth" clip-path="url(#clip0_0_92)">
+<path id="Vector" d="M15.9375 0C19.102 0 22.1954 0.938384 24.8266 2.69649C27.4578 4.45459 29.5085 6.95345 30.7195 9.87707C31.9305 12.8007 32.2474 16.0177 31.63 19.1214C31.0127 22.2251 29.4888 25.0761 27.2512 27.3137C25.0135 29.5514 22.1626 31.0752 19.0589 31.6926C15.9552 32.3099 12.7381 31.9931 9.81452 30.7821C6.8909 29.5711 4.39204 27.5203 2.63394 24.8891C0.875838 22.2579 -0.0625455 19.1645 -0.0625455 16C-0.0625455 11.7565 1.62316 7.68687 4.62375 4.68629C7.62433 1.68571 11.694 0 15.9375 0V0Z" fill-rule="evenodd" clip-rule="evenodd" fill="white" style="fill:white;fill-opacity:1;"/>
+<path id="Vector_2" d="M15.9375 3.43564L20.1469 9.72509L24.3564 16.016L15.9375 20.2575L7.51855 16L11.728 9.70909L15.9375 3.43564ZM15.9375 21.952L7.98545 17.7091L15.9375 28.5644L23.8895 17.7091L15.9375 21.952Z" fill-rule="evenodd" clip-rule="evenodd" fill="#343434" style="fill:#343434;fill:color(display-p3 0.2039 0.2039 0.2039);fill-opacity:1;"/>
+<path id="Vector_3" d="M15.9375 3.43564L20.1469 9.70909L24.3564 16L15.9375 12.8218V3.43564Z" fill-rule="evenodd" clip-rule="evenodd" fill="#343434" style="fill:#343434;fill:color(display-p3 0.2039 0.2039 0.2039);fill-opacity:1;"/>
+<path id="Vector_4" d="M15.9375 21.952L23.9055 17.7091L15.9375 28.5804V21.952Z" fill-rule="evenodd" clip-rule="evenodd" fill="#313131" style="fill:#313131;fill:color(display-p3 0.1922 0.1922 0.1922);fill-opacity:1;"/>
+<path id="Vector_5" d="M15.9375 12.8218L24.3564 16L15.9375 20.2415V12.8218Z" fill-rule="evenodd" clip-rule="evenodd" fill="#151515" style="fill:#151515;fill:color(display-p3 0.0824 0.0824 0.0824);fill-opacity:1;"/>
+<path id="Vector_6" d="M15.9375 3.43564L11.728 9.70909L7.51855 16L15.9375 12.8218V3.43564Z" fill-rule="evenodd" clip-rule="evenodd" fill="#8C8C8C" style="fill:#8C8C8C;fill:color(display-p3 0.5490 0.5490 0.5490);fill-opacity:1;"/>
+<path id="Vector_7" d="M15.9375 21.952L7.98545 17.7091L15.9375 28.5804V21.952Z" fill-rule="evenodd" clip-rule="evenodd" fill="#8A8A8A" style="fill:#8A8A8A;fill:color(display-p3 0.5412 0.5412 0.5412);fill-opacity:1;"/>
+<path id="Vector_8" d="M15.9375 12.8218L7.51855 16L15.9375 20.2415V12.8218Z" fill-rule="evenodd" clip-rule="evenodd" fill="#353535" style="fill:#353535;fill:color(display-p3 0.2078 0.2078 0.2078);fill-opacity:1;"/>
+</g>
+<defs>
+<clipPath id="clip0_0_92">
+<rect width="32" height="32" fill="white" style="fill:white;fill-opacity:1;"/>
+</clipPath>
+</defs>
+</svg>

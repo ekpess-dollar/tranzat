@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import ZigzagTexture from "@/components/ZigzagTexture";
-import BankBadge from "@/components/BankBadge";
 import DownloadButton from "@/components/DownloadButton";
-import PhoneMockup from "@/components/PhoneMockup";
 import Coins from "@/components/Coins";
+import ValuesPanels from "./ValuesPanels";
+import TrustSeal from "./TrustSeal";
+import WordRotator from "./WordRotator";
+import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About Tranzat — Where crypto meets everyday life",
@@ -14,84 +15,210 @@ export const metadata: Metadata = {
     "Tranzat makes it possible for people to use their crypto in the real world, across Africa.",
 };
 
-const values = [
-  {
-    title: "Easy Access",
-    body: "We believe everyone should be able to use their digital assets easily, no matter where they live. This is why Tranzat was built.",
-  },
-  {
-    title: "Simple Design",
-    body: "Finance can get complicated sometimes, so we made sure our app is user friendly for all, irrespective of age or demographics.",
-  },
-  {
-    title: "Impactful Innovation",
-    body: "We embrace new technology, but only when it creates real value. Our innovation is driven by usefulness, not hype.",
-  },
-  {
-    title: "Real-World Solution",
-    body: "Crypto should solve real problems. Everything we build is aimed at helping people pay real bills, make real purchases, and participate in their local economy.",
-  },
-];
+const moments = ["everyday life", "rent day", "airtime", "school fees", "groceries", "the weekend"];
+const tokens = ["btc", "eth", "usdt", "usdc", "bnb", "trx"];
+const spends = ["Airtime", "Data", "Electricity", "TV", "Bank transfers", "Virtual cards", "Bills"];
 
 function Eyebrow({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <p className={`font-body text-sm font-medium uppercase tracking-[0.14em] ${className}`}>
+    <p className={`font-body text-sm font-semibold uppercase tracking-[0.16em] ${className}`}>
       {children}
     </p>
   );
 }
 
-const h2 =
-  "text-balance font-display text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-[48px] sm:leading-[52px] sm:tracking-[-1.44px]";
+function Token({ name, className = "" }: { name: string; className?: string }) {
+  return (
+    <Image
+      src={`/about/tokens/${name}.svg`}
+      alt=""
+      width={32}
+      height={32}
+      className={`inline-block rounded-full ring-[3px] ring-white ${className}`}
+    />
+  );
+}
+
+function Screen({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  return (
+    <div
+      className={`overflow-hidden rounded-[46px] border-[10px] border-[#0b0b10] bg-[#0b0b10] shadow-[0_40px_80px_-20px_rgba(16,1,52,0.55)] ${className}`}
+    >
+      <Image src={src} alt={alt} width={393} height={852} className="block h-auto w-full rounded-[36px]" />
+    </div>
+  );
+}
+
+function Ribbon({
+  tone,
+  direction,
+  className = "",
+}: {
+  tone: "blue" | "red";
+  direction: "left" | "right";
+  className?: string;
+}) {
+  const items = [...spends, ...spends];
+  return (
+    <div
+      aria-hidden
+      className={`absolute left-[-5%] w-[110%] overflow-hidden py-4 ${
+        tone === "blue" ? "bg-tz-blue text-navy" : "bg-tz-red text-white"
+      } ${className}`}
+    >
+      <div
+        className={`flex w-max items-center gap-8 ${
+          direction === "left" ? styles.ribbonLeft : styles.ribbonRight
+        }`}
+      >
+        {[0, 1].map((copy) => (
+          <div key={copy} className="flex items-center gap-8">
+            {items.map((s, i) => (
+              <span key={`${s}-${i}`} className="flex items-center gap-8">
+                <span
+                  className={`whitespace-nowrap font-display text-[40px] font-extrabold uppercase leading-none tracking-[-0.02em] lg:text-[56px] ${
+                    i % 2 ? styles.outline : ""
+                  }`}
+                >
+                  {s}
+                </span>
+                <Image
+                  src={`/about/tokens/${tokens[i % tokens.length]}.svg`}
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="size-9 lg:size-11"
+                />
+              </span>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+const display =
+  "text-balance font-display font-bold tracking-[-0.035em]";
 
 export default function AboutPage() {
   return (
     <>
       <Nav />
-      <main>
-        <section className="relative overflow-hidden bg-navy px-4 pb-[180px] pt-24 lg:pb-[220px] lg:pt-[140px]">
-          <ZigzagTexture />
-          <div className="relative z-10 mx-auto flex max-w-[880px] flex-col items-center gap-6 text-center">
-            <span className="rounded-full border border-white/15 bg-white/10 px-4 py-1.5 font-body text-sm font-medium text-white">
-              The Tranzat Story
-            </span>
-            <h1 className="text-balance font-display text-[44px] font-extrabold leading-[1.08] tracking-[-0.04em] text-white sm:text-[64px] sm:leading-[72px] sm:tracking-[-2.56px]">
-              Where crypto meets everyday life
-            </h1>
-            <p className="max-w-[640px] font-body text-lg leading-[1.6] text-muted lg:text-[22px] lg:leading-9">
-              Tranzat is a company that makes it possible for people to use
-              their crypto in the real world, across Africa.
-            </p>
+      <main className="overflow-x-clip">
+        {/* Hero */}
+        <section className="relative bg-navy">
+          <div aria-hidden className={`pointer-events-none absolute inset-0 ${styles.dots}`} />
+          <div className="relative mx-auto grid max-w-[1272px] items-end gap-12 px-4 pt-20 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-8 lg:pt-24">
+            <div className="flex flex-col gap-7 pb-10 lg:pb-[140px]">
+              <span className="w-fit rounded-full border border-white/15 bg-white/10 px-4 py-1.5 font-body text-sm font-medium text-white">
+                The Tranzat Story
+              </span>
+              <h1 className="font-display text-[46px] font-extrabold leading-[1] tracking-[-0.045em] text-white sm:text-[64px] lg:text-[80px]">
+                <span className="sr-only">Where crypto meets everyday life</span>
+                <span aria-hidden className="block">
+                  Where crypto
+                  <br />
+                  meets <WordRotator words={moments} />
+                </span>
+              </h1>
+              <p className="max-w-[560px] font-body text-lg leading-[1.6] text-muted lg:text-[22px] lg:leading-9">
+                Tranzat is a company that makes it possible for people to use
+                their crypto in the real world, across Africa.
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex -space-x-2.5">
+                  {tokens.map((t) => (
+                    <Token key={t} name={t} className="size-10 ring-navy" />
+                  ))}
+                </div>
+                <p className="font-body text-sm leading-5 text-white/70">
+                  BTC, ETH, USDT and 10+ more,
+                  <br />
+                  spent as Naira.
+                </p>
+              </div>
+            </div>
+
+            <div className="relative mx-auto w-full max-w-[460px] lg:mx-0 lg:justify-self-end">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-t-full bg-tz-blue">
+                <div aria-hidden className="absolute inset-[9%] rounded-t-full border-2 border-navy/10" />
+                <div aria-hidden className="absolute inset-[20%] rounded-t-full border-2 border-navy/10" />
+                <Image
+                  src="/about/everyday-spender.png"
+                  alt="A smiling woman holding a bank card in one hand and her phone in the other"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 460px, 90vw"
+                  className="object-cover object-top pt-[8%]"
+                />
+              </div>
+
+              <div
+                className={`absolute -left-4 top-[22%] flex items-center gap-3 rounded-2xl bg-white p-3 pr-5 shadow-[0_20px_40px_-12px_rgba(16,1,52,0.45)] sm:-left-12 ${styles.float}`}
+              >
+                <div className="flex -space-x-2">
+                  <Token name="usdt" className="size-8" />
+                  <span className="flex size-8 items-center justify-center rounded-full bg-navy font-display text-sm font-extrabold text-white ring-[3px] ring-white">
+                    ₦
+                  </span>
+                </div>
+                <div className="leading-tight">
+                  <p className="font-display text-[15px] font-bold text-dark">USDT → NGN</p>
+                  <p className="font-body text-xs text-dark/60">Converted automatically</p>
+                </div>
+              </div>
+
+              <div
+                className={`absolute -right-2 bottom-[14%] flex items-center gap-3 rounded-2xl bg-navy p-3 pr-5 text-white shadow-[0_20px_40px_-12px_rgba(0,0,0,0.5)] ring-1 ring-white/10 sm:-right-8 ${styles.floatLate}`}
+              >
+                <span className="flex size-9 items-center justify-center rounded-full bg-tz-blue text-lg font-bold text-navy">
+                  ✓
+                </span>
+                <div className="leading-tight">
+                  <p className="font-display text-[15px] font-bold">Recharge successful</p>
+                  <p className="font-body text-xs text-white/60">₦7,000 airtime sent</p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="relative -mt-[100px] rounded-t-[48px] bg-white px-4 pb-[120px] pt-20 sm:px-8 lg:rounded-t-[100px] lg:pt-[120px]">
-          <div className="mx-auto grid max-w-[1248px] gap-14 lg:grid-cols-2 lg:gap-24">
-            <div className="flex min-w-0 flex-col gap-5">
-              <Eyebrow className="text-shark/60">Our Platform</Eyebrow>
-              <h2 className={`${h2} text-dark`}>
-                We bridge the gap between crypto and traditional finance,
-                allowing seamless crypto-to-fiat transactions without delay.
-              </h2>
-              <div className="relative mt-6 aspect-[1042/588] w-full max-w-[480px] overflow-hidden rounded-[31px] border-b-8 border-r-8 border-black">
-                <Image
-                  src="/assets/spend-card2.png"
-                  alt="Airtime, internet, electricity and TV payments in the Tranzat app"
-                  fill
-                  sizes="480px"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="flex min-w-0 flex-col gap-5 lg:pt-11">
-              <h3 className="font-display text-[28px] font-bold leading-9 tracking-[-0.84px] text-shark">
+        {/* Everyday spending ribbons */}
+        <section aria-label="Things you can pay for with Tranzat" className="relative h-[200px] bg-white lg:h-[250px]">
+          <Ribbon tone="red" direction="right" className="top-[38%] rotate-[3deg]" />
+          <Ribbon tone="blue" direction="left" className="top-[22%] -rotate-[2.5deg] shadow-[0_18px_30px_-18px_rgba(16,1,52,0.5)]" />
+        </section>
+
+        {/* Platform */}
+        <section className="bg-white px-4 pb-[120px] pt-16 sm:px-8 lg:pt-24">
+          <div className="mx-auto max-w-[1180px]">
+            <Eyebrow className="text-tz-red">Our Platform</Eyebrow>
+            <p className={`${display} mt-6 text-[34px] leading-[1.12] text-dark sm:text-[46px] lg:text-[58px] lg:leading-[1.08]`}>
+              We bridge the gap between crypto{" "}
+              <span className="inline-flex -space-x-[0.22em] align-[-0.1em]">
+                {["btc", "eth", "usdt"].map((t) => (
+                  <Token key={t} name={t} className="size-[0.85em]" />
+                ))}
+              </span>{" "}
+              and traditional finance{" "}
+              <span className="inline-flex size-[0.85em] items-center justify-center rounded-full bg-navy align-[-0.1em] ring-[3px] ring-white">
+                <span className="text-[0.55em] font-extrabold leading-none text-white">₦</span>
+              </span>
+              <span className="text-dark/35">
+                , allowing seamless crypto-to-fiat transactions without delay.
+              </span>
+            </p>
+
+            <div className="mt-16 grid gap-8 border-t border-dark/10 pt-10 md:grid-cols-[0.6fr_1fr_1fr] md:gap-12">
+              <h2 className="font-display text-[28px] font-bold leading-9 tracking-[-0.84px] text-dark">
                 With Tranzat,
-              </h3>
-              <p className="font-body text-xl leading-[1.6] text-shark lg:text-[22px] lg:leading-9">
+              </h2>
+              <p className="font-body text-xl leading-[1.55] text-dark">
                 Digital assets are made easy and fast to spend in the real
                 world, no matter where you are on the globe.
               </p>
-              <p className="max-w-[560px] font-body text-lg font-[455] leading-[30px] tracking-[0.2px] text-shark/75 lg:text-xl">
+              <p className="font-body text-lg leading-[1.65] text-dark/70">
                 Tranzat is the result of innovative thinking driven by the need
                 to create a truly user-friendly platform that reflects the real
                 purpose of digital assets in everyday life: enabling people to
@@ -101,82 +228,107 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden rounded-t-[48px] bg-tz-blue px-3 pb-[144px] pt-[72px] sm:px-[84px] lg:min-h-[820px] lg:rounded-t-[100px] lg:pb-[196px]">
-          <div className="relative z-10 flex w-full max-w-[599px] flex-col items-start gap-0 px-3">
-            <div className="pt-6">
-              <BankBadge size={60} />
-            </div>
-            <h2 className={`${h2} pt-12 text-[#0d2831]`}>Why Tranzat?</h2>
-            <p className="pt-4 font-body text-xl leading-[1.6] text-[#0d2831] lg:text-[22px] lg:leading-9">
-              We take care of the automatic conversion while you focus on what
-              matters: making quick and easy payments in your local currency.
-            </p>
-            <Eyebrow className="pt-8 text-[#0d2831]/70">Built on two core values</Eyebrow>
-            <div className="flex gap-3 pt-3">
-              {["Simple", "Fast"].map((v) => (
-                <span
-                  key={v}
-                  className="rounded-full bg-white px-6 py-2 font-display text-[28px] font-bold leading-10 tracking-[-0.84px] text-[#0d2831]"
-                >
-                  {v}
-                </span>
-              ))}
-            </div>
-            <p className="pt-8 font-body text-lg leading-[30px] text-[#0d2831] sm:text-xl">
-              Our platform makes it possible for anyone to spend, send and enjoy
-              the true benefit of being digitally free with your assets. Whether
-              you&apos;re an individual who wants to spend crypto daily or send
-              more money globally, we make that possible without any delay.
-            </p>
-          </div>
-          <PhoneMockup />
-        </section>
-
-        <section className="relative -mt-12 rounded-t-[48px] bg-black px-4 pb-24 pt-20 sm:px-[84px] lg:-mt-[100px] lg:rounded-t-[100px] lg:pb-[120px] lg:pt-[96px]">
-          <div className="mx-auto max-w-[1272px] px-3">
-            <div className="flex flex-col gap-4">
-              <BankBadge size={60} />
-              <h2 className={`${h2} pt-8 text-[#e2e2e2]`}>Our Core Values</h2>
-              <p className="font-body text-lg leading-[30px] text-[#9e9e9e] sm:text-xl">
-                These are the values that keep us going
+        {/* Why Tranzat */}
+        <section className="bg-light px-4 py-[120px] sm:px-8">
+          <div className="mx-auto max-w-[1272px]">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
+              <div>
+                <Eyebrow className="text-dark/50">Why Tranzat?</Eyebrow>
+                <h2 className={`${display} mt-5 text-[36px] leading-[1.05] text-dark sm:text-[52px]`}>
+                  We take care of the automatic conversion.
+                </h2>
+              </div>
+              <p className="max-w-[520px] font-body text-xl leading-[1.55] text-dark/75 lg:pb-2">
+                So you can focus on what matters: making quick and easy payments
+                in your local currency.
               </p>
             </div>
-            <ul className="mt-14 grid gap-5 md:grid-cols-2">
-              {values.map((v) => (
-                <li
-                  key={v.title}
-                  className="flex flex-col gap-3 rounded-[38px] border-y border-[#e2e4e9]/70 bg-white/10 p-8 lg:p-10"
-                >
-                  <h3 className="font-display text-[28px] font-semibold leading-9 tracking-[-0.84px] text-white">
-                    {v.title}
-                  </h3>
-                  <p className="max-w-[480px] font-body text-lg leading-[30px] text-[#9e9e9e]">
-                    {v.body}
-                  </p>
-                </li>
-              ))}
-            </ul>
+
+            <Eyebrow className="mt-16 text-dark/50">Built on two core values</Eyebrow>
+            <div className="mt-6 grid gap-5 lg:grid-cols-2">
+              <article className="relative flex flex-col overflow-hidden rounded-[40px] sm:min-h-[560px] bg-tz-blue p-8 sm:p-12">
+                <h3 className="font-display text-[80px] font-extrabold leading-[0.85] tracking-[-0.06em] text-navy sm:text-[140px]">
+                  Simple<span className="text-white">.</span>
+                </h3>
+                <p className="mt-6 max-w-[280px] font-body text-lg leading-[1.6] text-[#0d2831]">
+                  Our platform makes it possible for anyone to spend, send and
+                  enjoy the true benefit of being digitally free with your
+                  assets.
+                </p>
+                <Screen
+                  src="/about/screen-home.png"
+                  alt="Tranzat home screen with balance, deposit and transfer buttons, and bill shortcuts"
+                  className="relative -mb-44 ml-auto mr-4 mt-10 w-[230px] rotate-[7deg] sm:absolute sm:-bottom-40 sm:right-10 sm:m-0 sm:w-[260px]"
+                />
+              </article>
+
+              <article className="relative flex flex-col overflow-hidden rounded-[40px] sm:min-h-[560px] bg-navy p-8 sm:p-12">
+                <h3 className="font-display text-[80px] font-extrabold leading-[0.85] tracking-[-0.06em] text-white sm:text-[140px]">
+                  Fast<span className="text-tz-blue">.</span>
+                </h3>
+                <p className="mt-6 max-w-[280px] font-body text-lg leading-[1.6] text-white/75">
+                  Whether you&apos;re an individual who wants to spend crypto
+                  daily or send more money globally, we make that possible
+                  without any delay.
+                </p>
+                <Screen
+                  src="/about/screen-success.png"
+                  alt="Tranzat confirmation screen reading Recharge Successful"
+                  className="relative -mb-44 ml-auto mr-4 mt-10 w-[230px] rotate-[4deg] sm:absolute sm:-bottom-40 sm:right-10 sm:m-0 sm:w-[260px]"
+                />
+              </article>
+            </div>
           </div>
         </section>
 
-        <section className="bg-white px-4 py-[120px]">
-          <div className="mx-auto flex max-w-[760px] flex-col items-center gap-6 text-center">
-            <BankBadge size={60} className="ring-1 ring-[#e2e4e9]" />
-            <h2 className={`${h2} pt-4 text-dark`}>
-              Built on trust, backed by compliance
-            </h2>
-            <p className="max-w-[620px] font-body text-lg leading-[30px] text-dark/75 sm:text-xl">
-              From sign-up to every transaction, your personal data is
-              safeguarded under Nigeria&apos;s data protection laws and overseen by
-              the NDPC.
-            </p>
+        {/* Core values */}
+        <section className="bg-white px-4 py-[120px] sm:px-8">
+          <div className="mx-auto max-w-[1272px]">
+            <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <h2 className={`${display} text-[36px] leading-[1.05] text-dark sm:text-[52px]`}>
+                Our Core Values
+              </h2>
+              <p className="font-body text-lg text-dark/60">These are the values that keep us going</p>
+            </div>
+            <ValuesPanels />
           </div>
         </section>
 
+        {/* Trust */}
+        <section className="relative overflow-hidden bg-navy px-4 py-[120px] sm:px-8">
+          <div aria-hidden className={`pointer-events-none absolute inset-0 ${styles.dots}`} />
+          <div className="relative mx-auto grid max-w-[1272px] items-center gap-16 lg:grid-cols-2">
+            <div>
+              <Eyebrow className="text-tz-blue">Data protection</Eyebrow>
+              <h2 className={`${display} mt-5 text-[36px] leading-[1.05] text-white sm:text-[52px]`}>
+                Built on trust, backed by compliance
+              </h2>
+              <p className="mt-6 max-w-[520px] font-body text-xl leading-[1.6] text-muted">
+                From sign-up to every transaction, your personal data is
+                safeguarded under Nigeria&apos;s data protection laws and
+                overseen by the NDPC.
+              </p>
+            </div>
+            <div className="relative mx-auto h-[460px] w-full max-w-[460px]">
+              <Screen
+                src="/about/screen-security.png"
+                alt="Tranzat security screen asking for a transaction PIN"
+                className="absolute right-0 top-0 w-[240px] rotate-[5deg] sm:w-[260px]"
+              />
+              <TrustSeal className="absolute bottom-0 left-0 w-[200px] drop-shadow-[0_24px_40px_rgba(0,0,0,0.45)] sm:w-[240px]" />
+            </div>
+          </div>
+        </section>
+
+        {/* CTA (kept from the previous version) */}
         <section className="relative rounded-t-[48px] bg-tz-red px-4 pt-[72px] lg:h-[780px] lg:rounded-t-[100px]">
           <div className="relative z-10 mx-auto flex max-w-[620px] flex-col items-center gap-4 text-center">
-            <Eyebrow className="pt-6 text-white/80">Zero complexity</Eyebrow>
-            <h2 className={`${h2} text-[#e2e2e2]`}>Spend your crypto your way</h2>
+            <p className="pt-6 font-body text-sm font-medium uppercase tracking-[0.14em] text-white/80">
+              Zero complexity
+            </p>
+            <h2 className="text-balance font-display text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] text-[#e2e2e2] sm:text-[48px] sm:leading-[52px] sm:tracking-[-1.44px]">
+              Spend your crypto your way
+            </h2>
             <div className="pt-4">
               <DownloadButton label="Download Tranzat today" />
             </div>

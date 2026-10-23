@@ -1,0 +1,53 @@
+.ribbonLeft {
+  animation: ribbon 42s linear infinite;
+}
+
+.ribbonRight {
+  animation: ribbon 48s linear infinite reverse;
+}
+
+@keyframes ribbon {
+  to { transform: translateX(-50%); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floatLate {
+  animation: float 7s ease-in-out -3s infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-10px); }
+}
+
+.outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px currentColor;
+}
+
+.dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.13) 1px, transparent 1.6px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(ellipse 60% 70% at 70% 40%, #000 15%, transparent 72%);
+}
+
+.spin {
+  transform-origin: 140px 140px;
+  animation: spin 30s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ribbonLeft,
+  .ribbonRight,
+  .float,
+  .floatLate,
+  .spin {
+    animation: none;
+  }
+}
