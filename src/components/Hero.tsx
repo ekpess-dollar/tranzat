@@ -10,12 +10,11 @@ export default function Hero() {
         aria-hidden
       >
         <div
-          className="absolute w-[1666px] h-[937px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180 mix-blend-plus-lighter opacity-90"
+          className="absolute w-[1666px] h-[937px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180"
           style={{
-            backgroundImage: "url('/assets/zigzag-bg.png')",
-            backgroundSize: "501.33px 282px",
-            backgroundPosition: "top left",
-            backgroundRepeat: "repeat",
+            background:
+              "url('/assets/zigzag-bg.png') lightgray 0% 0% / 25.066664814949036px 25.066664814949036px repeat",
+            mixBlendMode: "plus-lighter",
           }}
         />
       </div>
