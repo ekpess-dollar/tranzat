@@ -11,6 +11,13 @@ const columns = [
   },
 ];
 
+const pageLinks: Record<string, string> = {
+  "About Us": "/about",
+  FAQs: "/faq",
+  "Terms and Conditions": "/terms",
+  "Privacy Policy": "/privacy",
+};
+
 const linkClass =
   "font-body text-[15px] font-[459] leading-[30px] tracking-[0.3px] text-dark/80 transition-colors hover:text-dark";
 const titleClass = "font-display text-[15px] font-bold uppercase text-dark";
@@ -40,7 +47,7 @@ export default function Footer() {
               <nav key={col.title} className={`flex flex-col gap-4 ${col.width}`}>
                 <span className={titleClass}>{col.title}</span>
                 {col.links.map((l) => (
-                  <Link key={l} href={l === "About Us" ? "/about" : "#"} className={linkClass}>
+                  <Link key={l} href={pageLinks[l] ?? "#"} className={linkClass}>
                     {l}
                   </Link>
                 ))}

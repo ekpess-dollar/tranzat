@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const links = ["Products", "About", "Blog", "FAQ"];
-const hrefs: Record<string, string> = { About: "/about" };
+const hrefs: Record<string, string> = { About: "/about", FAQ: "/faq" };
 
 export default function Nav() {
   return (
