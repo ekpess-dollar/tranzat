@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 const links = ["Products", "About", "Blog", "FAQ"];
+const hrefs: Record<string, string> = { About: "/about" };
 
 export default function Nav() {
   return (
@@ -15,7 +16,7 @@ export default function Nav() {
           {links.map((item) => (
             <li key={item}>
               <Link
-                href="#"
+                href={hrefs[item] ?? "#"}
                 className="flex items-center gap-2 p-2 font-body text-sm leading-7 text-white transition-opacity hover:opacity-75"
               >
                 {item}

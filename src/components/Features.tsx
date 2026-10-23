@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
 import {
   useCallback,
   useEffect,
@@ -13,6 +11,8 @@ import {
 import PhoneMockup from "./PhoneMockup";
 import BillsStack from "./BillsStack";
 import Coins from "./Coins";
+import BankBadge from "./BankBadge";
+import DownloadButton from "./DownloadButton";
 
 const NAV_H = 76;
 // Scroll distance each card stays open for, as a share of the viewport height.
@@ -66,35 +66,6 @@ const cards: Card[] = [
     centered: true,
   },
 ];
-
-function BankBadge({ size }: { size: 50 | 60 }) {
-  return (
-    <span
-      className="flex shrink-0 items-center justify-center rounded-[30px] bg-white"
-      style={{ width: size, height: size }}
-    >
-      <Image
-        src="/assets/bank-glyph.svg"
-        alt=""
-        width={24}
-        height={21}
-        className="h-[21.13px] w-[23.54px]"
-      />
-    </span>
-  );
-}
-
-function DownloadButton() {
-  return (
-    <Link
-      href="#"
-      className="inline-flex h-12 items-center gap-[21px] rounded-lg border border-light bg-light pl-6 pr-[26px] font-display text-base font-semibold leading-[30px] tracking-[-0.32px] text-black transition-colors hover:bg-white"
-    >
-      Download Tranzat
-      <Image src="/assets/arrow.svg" alt="" width={15} height={15} />
-    </Link>
-  );
-}
 
 function CardText({ card, centered }: { card: Card; centered: boolean }) {
   return (

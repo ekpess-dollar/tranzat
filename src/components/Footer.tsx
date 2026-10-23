@@ -40,7 +40,7 @@ export default function Footer() {
               <nav key={col.title} className={`flex flex-col gap-4 ${col.width}`}>
                 <span className={titleClass}>{col.title}</span>
                 {col.links.map((l) => (
-                  <Link key={l} href="#" className={linkClass}>
+                  <Link key={l} href={l === "About Us" ? "/about" : "#"} className={linkClass}>
                     {l}
                   </Link>
                 ))}

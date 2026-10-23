@@ -1,18 +1,11 @@
 import Image from "next/image";
 import StoreButton from "./StoreButton";
+import ZigzagTexture from "./ZigzagTexture";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-navy lg:h-[900px]">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[937px] w-[1666px] -translate-x-1/2 -translate-y-1/2 rotate-180 opacity-90 mix-blend-plus-lighter"
-        style={{
-          backgroundImage: "url('/assets/zigzag-bg.png')",
-          backgroundSize: "501.33px 282px",
-          backgroundRepeat: "repeat",
-        }}
-      />
+      <ZigzagTexture />
 
       <div className="relative z-10 px-4 pt-20 lg:absolute lg:inset-x-[5.83%] lg:inset-y-12 lg:flex lg:items-center lg:px-3 lg:pb-[150.71px] lg:pt-[149.6px]">
         <div className="flex flex-col gap-2">
