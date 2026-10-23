@@ -1,36 +1,39 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const links = ["Products", "About", "Blog", "FAQ"];
+
 export default function Nav() {
   return (
-    <nav className="bg-navy h-[76px] sticky top-0 z-50 flex items-center justify-center px-5 lg:px-20">
-      <div className="flex items-center gap-4 w-full max-w-[1440px]">
-        <Link href="/" className="shrink-0">
-          <Image src="/assets/logo.svg" alt="Tranzat" width={94} height={44} />
+    <header className="sticky top-0 z-50 h-[76px] bg-navy">
+      <nav className="mx-auto flex h-full max-w-[1440px] items-center gap-4 px-4 py-4 lg:px-[92px]">
+        <Link href="/" className="shrink-0" aria-label="Tranzat home">
+          <Image src="/assets/logo.svg" alt="Tranzat" width={94} height={44} priority />
         </Link>
 
-        <div className="hidden md:flex flex-1 items-center justify-center gap-1">
-          {["Products", "About", "Blog", "FAQ"].map((item) => (
-            <Link
-              key={item}
-              href="#"
-              className="font-body text-white text-sm px-3 py-2 flex items-center gap-1.5 hover:opacity-80 transition-opacity"
-            >
-              {item}
-              {item === "Products" && (
-                <Image src="/assets/chevron.svg" alt="" width={10} height={6} />
-              )}
-            </Link>
+        <ul className="hidden flex-1 items-center justify-center gap-6 md:flex">
+          {links.map((item) => (
+            <li key={item}>
+              <Link
+                href="#"
+                className="flex items-center gap-2 p-2 font-body text-sm leading-7 text-white transition-opacity hover:opacity-75"
+              >
+                {item}
+                {item === "Products" && (
+                  <Image src="/assets/chevron.svg" alt="" width={10} height={6} />
+                )}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <Link
           href="#"
-          className="ml-auto bg-light border border-light rounded-lg px-6 py-1.5 font-display font-semibold text-sm text-dark tracking-[-0.42px] leading-7 whitespace-nowrap hover:bg-white transition-colors"
+          className="ml-auto whitespace-nowrap rounded-lg border border-light bg-light px-4 py-1.5 font-display text-sm font-semibold leading-7 tracking-[-0.42px] text-black transition-colors hover:bg-white sm:px-6 md:ml-0"
         >
           Download Tranzat Now
         </Link>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }

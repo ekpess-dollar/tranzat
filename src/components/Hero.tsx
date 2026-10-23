@@ -1,97 +1,53 @@
 import Image from "next/image";
-import Link from "next/link";
+import StoreButton from "./StoreButton";
 
 export default function Hero() {
   return (
-    <section className="bg-navy min-h-[900px] relative overflow-hidden flex items-center px-6 lg:px-[5.83%]">
-      {/* Zigzag texture — tiling pattern, blended into the dark background */}
+    <section className="relative overflow-hidden bg-navy lg:h-[900px]">
       <div
-        className="absolute inset-0 pointer-events-none z-0"
         aria-hidden
-      >
-        <div
-          className="absolute w-[1666px] h-[937px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180"
-          style={{
-            background:
-              "url('/assets/zigzag-bg.png') lightgray 0% 0% / 25.066664814949036px 25.066664814949036px repeat",
-            mixBlendMode: "plus-lighter",
-          }}
-        />
-      </div>
-
-      {/* Background phone graphic */}
-      <Image
-        src="/assets/hero-phone.png"
-        alt="Tranzat app"
-        width={760}
-        height={760}
-        className="absolute right-[-0.21%] top-[145px] w-[52%] max-w-[760px] object-contain pointer-events-none hidden lg:block"
-        priority
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[937px] w-[1666px] -translate-x-1/2 -translate-y-1/2 rotate-180 opacity-90 mix-blend-plus-lighter"
+        style={{
+          backgroundImage: "url('/assets/zigzag-bg.png')",
+          backgroundSize: "501.33px 282px",
+          backgroundRepeat: "repeat",
+        }}
       />
 
-      <div className="relative z-10 max-w-[660px] py-[150px] lg:py-[150px] py-20">
-        <h1 className="font-display font-extrabold text-white text-[clamp(40px,4.44vw,64px)] tracking-[-2.56px] leading-[1.125] mb-6">
-          Welcome to the future
-          <br />
-          of Crypto Spending.
-        </h1>
-
-        <p className="font-body text-muted text-[clamp(16px,1.53vw,22px)] leading-[1.636] max-w-[608px] mb-8">
-          Open your Spenda wallet, deposit crypto, and spend in Naira instantly,
-          no complicated steps, no waiting.
-        </p>
-
-        <div className="flex flex-wrap gap-3 mb-[88px]">
-          <StoreButton
-            icon="/assets/appstore-hero.svg"
-            iconSize={{ w: 23, h: 28 }}
-            store="App Store"
-            className="px-4"
-          />
-          <StoreButton
-            icon="/assets/playstore-dark.svg"
-            iconSize={{ w: 23, h: 26 }}
-            store="Play Store"
-            className="px-6"
-          />
+      <div className="relative z-10 px-4 pt-20 lg:absolute lg:inset-x-[5.83%] lg:inset-y-12 lg:flex lg:items-center lg:px-3 lg:pb-[150.71px] lg:pt-[149.6px]">
+        <div className="flex flex-col gap-2">
+          <h1 className="font-display text-[40px] font-extrabold leading-[1.125] tracking-[-0.04em] text-white sm:text-[52px] lg:text-[64px] lg:leading-[72px] lg:tracking-[-2.56px]">
+            Welcome to the future <br className="hidden sm:block" />
+            of Crypto Spending.
+          </h1>
+          <p className="max-w-[608px] pt-2 font-body text-lg leading-[1.6] text-muted lg:text-[22px] lg:leading-9">
+            Open your Spenda wallet, deposit crypto, and spend in Naira
+            instantly, no complicated steps, no waiting.
+          </p>
+          <div className="-mx-3 flex flex-wrap gap-y-3">
+            <div className="px-3 pt-6">
+              <StoreButton store="apple" icon="/assets/appstore-hero.svg" tone="light" />
+            </div>
+            <div className="px-3 pt-6">
+              <StoreButton store="google" icon="/assets/playstore-hero.svg" tone="light" />
+            </div>
+          </div>
+          <div className="hidden pt-[88px] lg:block">
+            <Image src="/assets/mouse.svg" alt="" width={24} height={39} />
+          </div>
         </div>
+      </div>
 
+      <div className="relative mx-auto -mb-24 mt-10 aspect-square w-[min(100%,560px)] lg:absolute lg:left-[47.64%] lg:right-[-0.21%] lg:top-[145px] lg:m-0 lg:w-auto lg:max-w-none">
         <Image
-          src="/assets/mouse.svg"
-          alt="Scroll down"
-          width={24}
-          height={39}
+          src="/assets/hero-phone.png"
+          alt="The Tranzat app showing a ₦300,050,000.00 balance"
+          fill
+          sizes="(min-width: 1024px) 53vw, 560px"
+          className="pointer-events-none object-contain"
+          priority
         />
       </div>
     </section>
-  );
-}
-
-function StoreButton({
-  icon,
-  iconSize,
-  store,
-  className = "",
-}: {
-  icon: string;
-  iconSize: { w: number; h: number };
-  store: string;
-  className?: string;
-}) {
-  return (
-    <Link
-      href="#"
-      className={`bg-light border border-light rounded-full flex items-center gap-4 py-2 hover:bg-white transition-colors ${className}`}
-    >
-      <Image src={icon} alt={store} width={iconSize.w} height={iconSize.h} />
-      <div>
-        <span className="block font-body text-shark text-xs leading-none">
-          Available on
-        </span>
-        <span className="block font-display font-bold text-shark text-[15px] leading-none mt-0.5">
-          {store}
-        </span>
-      </div>
-    </Link>
   );
 }

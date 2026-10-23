@@ -20,21 +20,23 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="bg-white py-12 pb-18">
-      <div className="max-w-[1104px] mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-0">
+    <section className="bg-white pb-[72px] pt-12">
+      <div className="mx-auto grid max-w-[1104px] grid-cols-1 md:grid-cols-3">
         {steps.map((step) => (
-          <div key={step.title} className="pt-12 px-6">
-            <Image
-              src={step.img}
-              alt={step.title}
-              width={320}
-              height={212}
-              className="w-full max-w-[320px] h-[212px] object-cover rounded-[31px] border-r-8 border-b-8 border-black"
-            />
-            <h3 className="font-display font-bold text-[32px] text-shark tracking-[-1.28px] leading-[1.25] mt-4 mb-3">
+          <div key={step.title} className="flex flex-col gap-2 px-6 pt-12">
+            <div className="relative aspect-[320/212] w-full max-w-[320px] overflow-hidden rounded-[31px] border-b-8 border-r-8 border-black">
+              <Image
+                src={step.img}
+                alt=""
+                fill
+                sizes="320px"
+                className="object-cover"
+              />
+            </div>
+            <h3 className="pt-4 font-display text-[32px] font-bold leading-10 tracking-[-1.28px] text-shark">
               {step.title}
             </h3>
-            <p className="font-body text-[20px] text-shark leading-[1.5] tracking-[0.2px]">
+            <p className="font-body text-xl font-[455] leading-[30px] tracking-[0.2px] text-shark">
               {step.desc}
             </p>
           </div>

@@ -5,13 +5,12 @@ import "./globals.css";
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
   variable: "--font-bricolage",
-  weight: ["400", "600", "700", "800"],
+  axes: ["opsz", "wdth"],
 });
 
 const onest = Onest({
   subsets: ["latin"],
   variable: "--font-onest",
-  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${bricolage.variable} ${onest.variable}`}>
+      <body className={`${bricolage.variable} ${onest.variable} font-body`}>
         {children}
       </body>
     </html>

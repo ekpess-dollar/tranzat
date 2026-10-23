@@ -7,11 +7,14 @@
     color-scheme: light;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    @apply bg-white text-dark overflow-x-hidden;
+    @apply bg-white text-dark overflow-x-hidden antialiased;
+  }
+}
+
+@layer utilities {
+  /* Figma sets every Bricolage layer to the 14pt optical size, which gives the chunky display cut. */
+  .font-display {
+    font-variation-settings: "opsz" 14, "wdth" 100;
   }
 }
