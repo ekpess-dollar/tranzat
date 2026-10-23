@@ -282,17 +282,16 @@ export default function AboutPage() {
         </section>
 
         {/* Core values */}
-        <section className="bg-white px-4 py-[120px] sm:px-8">
-          <div className="mx-auto max-w-[1272px]">
-            <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <ValuesPanels
+          heading={
+            <div className="mb-8 flex flex-col gap-3 md:mb-12 md:flex-row md:items-end md:justify-between">
               <h2 className={`${display} text-[36px] leading-[1.05] text-dark sm:text-[52px]`}>
                 Our Core Values
               </h2>
               <p className="font-body text-lg text-dark/60">These are the values that keep us going</p>
             </div>
-            <ValuesPanels />
-          </div>
-        </section>
+          }
+        />
 
         {/* Trust */}
         <section className="relative overflow-hidden bg-navy px-4 py-[120px] sm:px-8">
