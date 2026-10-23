@@ -14,7 +14,7 @@ export default function Hero() {
             of Crypto Spending.
           </h1>
           <p className="max-w-[608px] pt-2 font-body text-lg leading-[1.6] text-muted lg:text-[22px] lg:leading-9">
-            Open your Spenda wallet, deposit crypto, and spend in Naira
+            Open your Tranzat wallet, deposit crypto, and spend in Naira
             instantly, no complicated steps, no waiting.
           </p>
           <div className="-mx-3 flex flex-wrap gap-y-3">

@@ -4,7 +4,7 @@ const steps = [
   {
     img: "/assets/spend-card.png",
     title: "Deposit",
-    desc: "Deposit BTC, ETH, USDT and 10+ other cryptocurrencies directly into your Spenda wallet from any external wallet.",
+    desc: "Deposit BTC, ETH, USDT and 10+ other cryptocurrencies directly into your Tranzat wallet from any external wallet.",
   },
   {
     img: "/assets/spend-card.png",

@@ -16,7 +16,7 @@ const onest = Onest({
 export const metadata: Metadata = {
   title: "Tranzat — Crypto Spending Made Easy",
   description:
-    "Open your Spenda wallet, deposit crypto, and spend in Naira instantly. No complicated steps, no waiting.",
+    "Open your Tranzat wallet, deposit crypto, and spend in Naira instantly. No complicated steps, no waiting.",
 };
 
 export default function RootLayout({

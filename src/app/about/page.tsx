@@ -294,15 +294,14 @@ export default function AboutPage() {
         />
 
         {/* Trust */}
-        <section className="relative overflow-hidden bg-navy px-4 py-[120px] sm:px-8">
-          <div aria-hidden className={`pointer-events-none absolute inset-0 ${styles.dots}`} />
+        <section className="relative overflow-hidden bg-white px-4 py-[120px] sm:px-8">
           <div className="relative mx-auto grid max-w-[1272px] items-center gap-16 lg:grid-cols-2">
             <div>
-              <Eyebrow className="text-tz-blue">Data protection</Eyebrow>
-              <h2 className={`${display} mt-5 text-[36px] leading-[1.05] text-white sm:text-[52px]`}>
+              <Eyebrow className="text-tz-red">Data protection</Eyebrow>
+              <h2 className={`${display} mt-5 text-[36px] leading-[1.05] text-dark sm:text-[52px]`}>
                 Built on trust, backed by compliance
               </h2>
-              <p className="mt-6 max-w-[520px] font-body text-xl leading-[1.6] text-muted">
+              <p className="mt-6 max-w-[520px] font-body text-xl leading-[1.6] text-dark/70">
                 From sign-up to every transaction, your personal data is
                 safeguarded under Nigeria&apos;s data protection laws and
                 overseen by the NDPC.
