@@ -4,6 +4,22 @@ import Link from "next/link";
 export default function Hero() {
   return (
     <section className="bg-navy min-h-[900px] relative overflow-hidden flex items-center px-6 lg:px-[5.83%]">
+      {/* Zigzag texture — tiling pattern, blended into the dark background */}
+      <div
+        className="absolute inset-0 pointer-events-none z-0"
+        aria-hidden
+      >
+        <div
+          className="absolute w-[1666px] h-[937px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-180 mix-blend-plus-lighter opacity-90"
+          style={{
+            backgroundImage: "url('/assets/zigzag-bg.png')",
+            backgroundSize: "501.33px 282px",
+            backgroundPosition: "top left",
+            backgroundRepeat: "repeat",
+          }}
+        />
+      </div>
+
       {/* Background phone graphic */}
       <Image
         src="/assets/hero-phone.png"
@@ -14,7 +30,7 @@ export default function Hero() {
         priority
       />
 
-      <div className="relative z-10 max-w-[660px] py-[150px]">
+      <div className="relative z-10 max-w-[660px] py-[150px] lg:py-[150px] py-20">
         <h1 className="font-display font-extrabold text-white text-[clamp(40px,4.44vw,64px)] tracking-[-2.56px] leading-[1.125] mb-6">
           Welcome to the future
           <br />
