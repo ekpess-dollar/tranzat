@@ -130,8 +130,8 @@ function StaticFeatures() {
         return (
           <div
             key={card.id}
-            className={`${base} ${card.bg} ${i > 0 ? "-mt-12" : ""} ${
-              last ? "pb-0 lg:h-[991px]" : "overflow-hidden pb-24 lg:h-[658px]"
+            className={`${base} ${card.bg} ${i > 0 ? "-mt-12 lg:-mt-[100px]" : ""} ${
+              last ? "pb-0 lg:h-[991px]" : "overflow-hidden pb-24 lg:h-[710px]"
             }`}
           >
             <CardText card={card} centered={!!card.centered} />
@@ -216,16 +216,17 @@ function StackedFeatures() {
           const expanded = i === active;
           const afterOpen = i - 1 === active;
           const beforeOpen = i + 1 === active;
-          // The open card tucks 48px under its neighbours so its 100px corners show their colour.
-          const radius = expanded ? 100 : i === 0 || afterOpen ? 30 : 0;
+          // A card's top corners sit over the card above it, which extends by that radius to fill them.
+          // Once pinned under the nav, the first bar has nothing behind it, so it stays square.
+          const radius = expanded ? 100 : afterOpen || (i === 0 && active < 1) ? 30 : 0;
           return (
             <article
               key={card.id}
               className={`${card.bg} relative shrink-0 overflow-hidden transition-[flex-grow,flex-basis,margin-top,border-radius] duration-700 ease-[cubic-bezier(0.65,0,0.35,1)] motion-reduce:transition-none`}
               style={{
                 flexGrow: expanded ? 1 : 0,
-                flexBasis: `calc(var(--bar) + ${beforeOpen ? 48 : 0}px)`,
-                marginTop: i > 0 && (expanded || afterOpen) ? -48 : 0,
+                flexBasis: `calc(var(--bar) + ${beforeOpen ? 100 : 0}px)`,
+                marginTop: i > 0 ? -radius : 0,
                 borderTopLeftRadius: radius,
                 borderTopRightRadius: radius,
               }}
