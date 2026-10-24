@@ -256,7 +256,7 @@ export default function AboutPage() {
                   assets.
                 </p>
                 <Screen
-                  src="/about/screen-home.png"
+                  src="/assets/app-screen.png"
                   alt="Tranzat home screen with balance, deposit and transfer buttons, and bill shortcuts"
                   className="relative -mb-44 ml-auto mr-4 mt-10 w-[230px] rotate-[7deg] sm:absolute sm:-bottom-40 sm:right-10 sm:m-0 sm:w-[260px]"
                 />
