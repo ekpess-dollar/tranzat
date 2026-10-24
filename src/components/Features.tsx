@@ -11,7 +11,7 @@ import {
 import PhoneMockup from "./PhoneMockup";
 import BillsStack from "./BillsStack";
 import Coins from "./Coins";
-import BankBadge from "./BankBadge";
+import BankBadge, { type BadgeIcon } from "./BankBadge";
 import DownloadButton from "./DownloadButton";
 
 const NAV_H = 76;
@@ -20,12 +20,13 @@ const STEP_SVH = 60;
 // The stack needs room for two bars plus an open card; smaller screens get the static layout.
 const STACK_QUERY = "(min-width: 1024px) and (min-height: 680px)";
 
-const copy =
-  "Receive payments from your employers, clients, social media platforms, and other businesses directly to your own foreign account – without hidden fees";
-
 type Card = {
   id: string;
   title: string;
+  // Forced line breaks for the open card's heading, from sm up.
+  titleLines?: string[];
+  body: string;
+  icon?: BadgeIcon;
   bg: string;
   titleColor: string;
   bodyColor: string;
@@ -38,7 +39,9 @@ type Card = {
 const cards: Card[] = [
   {
     id: "naira",
-    title: "Instant Naira from your crypto. Arrives in seconds.",
+    title: "Effortless for beginners. Powerful for pros.",
+    titleLines: ["Effortless for beginners.", "Powerful for pros."],
+    body: "Tranzat simplifies crypto transactions, making it seamless for both first-timers and experienced users to move their money",
     bg: "bg-tz-blue",
     titleColor: "text-[#0d2831]",
     bodyColor: "text-[#0d2831]",
@@ -48,6 +51,8 @@ const cards: Card[] = [
   {
     id: "bills",
     title: "Pay your bills with ease",
+    body: "Receive payments from your employers, clients, social media platforms, and other businesses directly to your own foreign account – without hidden fees",
+    icon: { src: "/assets/icon-file-list.svg", width: 32, height: 32 },
     bg: "bg-black",
     titleColor: "text-[#e2e2e2]",
     bodyColor: "text-[#9e9e9e]",
@@ -56,7 +61,9 @@ const cards: Card[] = [
   },
   {
     id: "stablecoins",
-    title: "Send stablecoins to anyone, anywhere",
+    title: "Instant Naira from your crypto. Arrives in seconds.",
+    body: "Receive your crypto in Tranzat, watch it convert automatically, and send Naira to any Nigerian bank account from your employers, clients, or your own exchange without hidden fees.",
+    icon: { src: "/assets/icon-coin.svg", width: 32, height: 32 },
     bg: "bg-tz-red",
     titleColor: "text-[#e2e2e2]",
     bodyColor: "text-white",
@@ -75,15 +82,23 @@ function CardText({ card, centered }: { card: Card; centered: boolean }) {
       }`}
     >
       <div className="pt-6">
-        <BankBadge size={60} />
+        <BankBadge size={60} icon={card.icon} />
       </div>
       <h2
         className={`text-balance pt-12 font-display text-[34px] font-semibold leading-[1.05] tracking-[-0.03em] sm:text-[48px] sm:leading-[46px] sm:tracking-[-1.44px] ${card.titleColor}`}
       >
-        {card.title}
+        {card.titleLines
+          ? card.titleLines.map((line, i) => (
+              <span key={line}>
+                {i > 0 && <br className="hidden sm:block" />}
+                {i > 0 && " "}
+                {line}
+              </span>
+            ))
+          : card.title}
       </h2>
       <p className={`pt-3.5 font-body text-lg leading-[1.6] sm:text-xl sm:leading-[30px] ${card.bodyColor}`}>
-        {copy}
+        {card.body}
       </p>
       <div className="pt-6">
         <DownloadButton />
@@ -213,7 +228,7 @@ function StackedFeatures() {
                     : "opacity-100 delay-300 duration-300"
                 }`}
               >
-                <BankBadge size={50} />
+                <BankBadge size={50} icon={card.icon} />
                 <span
                   className={`font-display text-[32px] font-semibold leading-[46px] tracking-[-0.96px] ${card.barTitleColor}`}
                 >

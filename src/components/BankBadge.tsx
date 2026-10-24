@@ -1,10 +1,16 @@
 import Image from "next/image";
 
+export type BadgeIcon = { src: string; width: number; height: number };
+
+const BANK: BadgeIcon = { src: "/assets/bank-glyph.svg", width: 23.54, height: 21.13 };
+
 export default function BankBadge({
   size,
+  icon = BANK,
   className = "",
 }: {
   size: 50 | 60;
+  icon?: BadgeIcon;
   className?: string;
 }) {
   return (
@@ -13,11 +19,11 @@ export default function BankBadge({
       style={{ width: size, height: size }}
     >
       <Image
-        src="/assets/bank-glyph.svg"
+        src={icon.src}
         alt=""
-        width={24}
-        height={21}
-        className="h-[21.13px] w-[23.54px]"
+        width={Math.ceil(icon.width)}
+        height={Math.ceil(icon.height)}
+        style={{ width: icon.width, height: icon.height }}
       />
     </span>
   );
