@@ -33,8 +33,8 @@ export default function Hero() {
 
       <div className="relative mx-auto -mb-24 mt-10 aspect-square w-[min(100%,560px)] lg:absolute lg:left-[47.64%] lg:right-[-0.21%] lg:top-[145px] lg:m-0 lg:w-auto lg:max-w-none">
         <Image
-          src="/assets/hero-phone.png"
-          alt="The Tranzat app showing a ₦300,050,000.00 balance"
+          src="/assets/hero-phone.webp"
+          alt="The Tranzat app home screen showing a ₦300,050,000.00 balance"
           fill
           sizes="(min-width: 1024px) 53vw, 560px"
           className="pointer-events-none object-contain"
